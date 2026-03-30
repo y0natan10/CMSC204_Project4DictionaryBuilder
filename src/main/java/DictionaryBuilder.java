@@ -3,11 +3,14 @@
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * class for managing the hash table
  */
 public class DictionaryBuilder {
+
+	HashTable dictTable = null;
 
 	/**
 	 * Constructor that creates a hash table appropriate for the estimated entries.
@@ -16,7 +19,10 @@ public class DictionaryBuilder {
 	 * @param estimatedEntries
 	 */
 	DictionaryBuilder(int estimatedEntries) {
+
 		// TODO: idk what goes here yet, just making a skeleton
+		// call the constructor for the hash table
+		// with a modified version of estimatedEntires
 		return;
 	}
 
@@ -27,6 +33,10 @@ public class DictionaryBuilder {
 	 */
 	DictionaryBuilder(String filename) throws FileNotFoundException {
 		// TODO: idk what goes here yet, just making a skeleton
+		// read the entire file into a string
+		// make a new array for all the words
+		// call addWord on each word in the new array
+		// profit
 		return;
 	}
 
@@ -37,6 +47,11 @@ public class DictionaryBuilder {
 	 */
 	public boolean addWord(String word) {
 		// TODO: idk what goes here yet, just making a skeleton
+		/*
+		 * each word should be all lowercase. there should be no punctuation (only
+		 * letters a-z)
+		 */
+
 		return false;
 	}
 
@@ -68,6 +83,11 @@ public class DictionaryBuilder {
 	 */
 	public ArrayList<String> getAllWords() {
 		// TODO: idk what goes here yet, just making a skeleton
-		return null;
+		// insert each word from the hash table into a new ArrayList
+		//
+		ArrayList<String> res = new ArrayList();
+
+		Collections.sort(res);
+		return res;
 	}
 }
