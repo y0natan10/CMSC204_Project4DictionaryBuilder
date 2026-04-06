@@ -21,10 +21,11 @@
  * ----------------------------------------------------------------------
  */
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Good Faith Attempt (GFA) tests for DictionaryBuilder.

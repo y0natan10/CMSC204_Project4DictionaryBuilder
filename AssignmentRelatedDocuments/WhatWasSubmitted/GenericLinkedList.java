@@ -145,13 +145,16 @@ public class GenericLinkedList<T extends Comparable<T>> {
 	public boolean remove(T element) {
 		Node target = searchNode(element);
 
-		if (target == null)
+		if (target == null) {
 			return false;
+		}
 
-		if (target == this.head)
+		if (target == this.head) {
 			return this.removeFirst() != null;
-		if (target == this.tail)
+		}
+		if (target == this.tail) {
 			return this.removeLast() != null;
+		}
 
 		target.previous.next = target.next;
 		target.next.previous = target.previous;
@@ -229,7 +232,7 @@ public class GenericLinkedList<T extends Comparable<T>> {
 
 	/**
 	 * Adds all data elements in this list to the provided ArrayList.
-	 * 
+	 *
 	 * @param list The target list to populate.
 	 */
 	public void fillList(ArrayList<T> list) {

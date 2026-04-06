@@ -2,14 +2,14 @@
 // M21105076
 
 /*
- * search <word> – report whether a word exists. 
- * add <word> – insert a new word into the table. 
- * delete <word> – remove a word from the table 
- * list – print all stored words in alphabetical order. 
- * stats – print the following statistics about the dictionary. 
- * * total words the total number of words inserted into the dictionary including duplicates. 
- * * unique words the number of different words inserted into the dictionary. 
- * * estimated load factor the load factor for the underlying hash table. 
+ * search <word> – report whether a word exists.
+ * add <word> – insert a new word into the table.
+ * delete <word> – remove a word from the table
+ * list – print all stored words in alphabetical order.
+ * stats – print the following statistics about the dictionary.
+ * * total words the total number of words inserted into the dictionary including duplicates.
+ * * unique words the number of different words inserted into the dictionary.
+ * * estimated load factor the load factor for the underlying hash table.
  * exit - quit the program.
  */
 
@@ -26,7 +26,7 @@ public class DictionaryShell {
 	 * main method that allows a user to search, add, delete words to a dictionary.
 	 * it also allows users to find various statistics about the dictionary such as
 	 * total words, total unique words, and the load factor
-	 * 
+	 *
 	 * @param arghs
 	 */
 	public static void main(String[] args) {
@@ -50,8 +50,9 @@ public class DictionaryShell {
 		while (running) {
 			System.out.print("> ");
 			String fullLine = input.nextLine().trim();
-			if (fullLine.isEmpty())
+			if (fullLine.isEmpty()) {
 				continue;
+			}
 
 			String[] parts = fullLine.split("\\s+", 2);
 			String command = parts[0].toLowerCase();
@@ -87,8 +88,9 @@ public class DictionaryShell {
 
 			case "list":
 				ArrayList<String> list = db.getAllWords();
-				for (String s : list)
+				for (String s : list) {
 					System.out.println(s);
+				}
 				break;
 
 			case "stats":

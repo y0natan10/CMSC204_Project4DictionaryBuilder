@@ -17,7 +17,7 @@ public class DictionaryBuilder {
 
 	/**
 	 * Initializes the dictionary with a table sized for an estimated count.
-	 * 
+	 *
 	 * @param estimatedEntries The expected number of unique words.
 	 */
 	public DictionaryBuilder(int estimatedEntries) {
@@ -28,7 +28,7 @@ public class DictionaryBuilder {
 
 	/**
 	 * Reads a file and populates the dictionary with its contents.
-	 * 
+	 *
 	 * @param filename The path to the text file
 	 * @throws FileNotFoundException If the file cannot be found.
 	 */
@@ -54,13 +54,14 @@ public class DictionaryBuilder {
 
 	/**
 	 * Cleans the input word and adds it to the hash table.
-	 * 
+	 *
 	 * @param word The raw string to be added.
 	 * @return True if a valid word was added after cleaning.
 	 */
 	public boolean addWord(String word) {
-		if (word == null || word.isEmpty())
+		if (word == null || word.isEmpty()) {
 			return false;
+		}
 
 		// Strip punctuation and convert to lowercase
 		String cleaned = word.toLowerCase().replaceAll("[^a-z]", "");
@@ -72,8 +73,9 @@ public class DictionaryBuilder {
 		// then replace with empty string
 
 		// if, after cleaning, the word is empty, then we didn't/don't add the word
-		if (cleaned.isEmpty())
+		if (cleaned.isEmpty()) {
 			return false;
+		}
 
 		this.dictTable.add(cleaned);
 		++this.totalWordsInserted;
@@ -82,7 +84,7 @@ public class DictionaryBuilder {
 
 	/**
 	 * Retrieves the frequency of a word in the dictionary.
-	 * 
+	 *
 	 * @param word The word to search for.
 	 * @return The number of occurrences found.
 	 */
@@ -93,7 +95,7 @@ public class DictionaryBuilder {
 
 	/**
 	 * Removes a word from the dictionary.
-	 * 
+	 *
 	 * @param word The word to delete.
 	 * @return True if removal was successful.
 	 * @throws DictionaryEntryNotFoundException if the word isn't there.
@@ -118,7 +120,7 @@ public class DictionaryBuilder {
 
 	/**
 	 * Returns an alphabetical list of all unique words
-	 * 
+	 *
 	 * @return A sorted ArrayList of dictionary entries.
 	 */
 	public ArrayList<String> getAllWords() {
@@ -140,7 +142,7 @@ public class DictionaryBuilder {
 
 	/**
 	 * Returns the total number of words inserted, including duplicates.
-	 * 
+	 *
 	 * @return total insertion count.
 	 */
 	public int getTotalWords() {
@@ -149,7 +151,7 @@ public class DictionaryBuilder {
 
 	/**
 	 * Provides access to the underlying HashTable.
-	 * 
+	 *
 	 * @return the dictionary hash table.
 	 */
 	public HashTable<String> getTable() {

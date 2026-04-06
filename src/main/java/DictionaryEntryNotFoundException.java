@@ -8,7 +8,7 @@ public class DictionaryEntryNotFoundException extends Exception {
 
 	/**
 	 * the yeet function
-	 * 
+	 *
 	 * @param message
 	 */
 	public DictionaryEntryNotFoundException(String message) {

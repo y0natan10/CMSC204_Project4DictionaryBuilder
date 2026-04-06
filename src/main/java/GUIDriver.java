@@ -1,9 +1,36 @@
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
 
 /**
  * ----------------------------------------------------------------------
@@ -59,7 +86,7 @@ public class GUIDriver extends JFrame {
 
     public GUIDriver(String initialFilename) {
         super("Project 4 - Dictionary Manager");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(720, 520));
         setLocationByPlatform(true);
 
@@ -184,7 +211,9 @@ public class GUIDriver extends JFrame {
             @Override public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     String sel = wordList.getSelectedValue();
-                    if (sel != null) wordField.setText(sel);
+                    if (sel != null) {
+						wordField.setText(sel);
+					}
                 }
             }
         });
@@ -261,9 +290,13 @@ public class GUIDriver extends JFrame {
     }
 
     private void doAdd() {
-        if (!ensureDict()) return;
+        if (!ensureDict()) {
+			return;
+		}
         String w = normalizedWord();
-        if (w == null) return;
+        if (w == null) {
+			return;
+		}
         dict.addWord(w);
         appendConsole("> add " + w);
         setStatus("Added: " + w);
@@ -273,9 +306,13 @@ public class GUIDriver extends JFrame {
     }
 
     private void doRemove() {
-        if (!ensureDict()) return;
+        if (!ensureDict()) {
+			return;
+		}
         String w = normalizedWord();
-        if (w == null) return;
+        if (w == null) {
+			return;
+		}
         try {
             dict.removeWord(w);
         } catch (DictionaryEntryNotFoundException e) {}
@@ -287,21 +324,29 @@ public class GUIDriver extends JFrame {
     }
 
     private void doSearch() {
-        if (!ensureDict()) return;
+        if (!ensureDict()) {
+			return;
+		}
         String w = normalizedWord();
-        if (w == null) return;
+        if (w == null) {
+			return;
+		}
         int count = dict.getFrequency(w);
         String msg = (count == 0)
                 ? ("\"" + w + "\" not found.")
                 : (count + " instance(s) of \"" + w + "\" found.");
         appendConsole(msg);
         setStatus(msg);
-        if (count >= 0) JOptionPane.showMessageDialog(this, msg, "Search", JOptionPane.INFORMATION_MESSAGE);
+        if (count >= 0) {
+			JOptionPane.showMessageDialog(this, msg, "Search", JOptionPane.INFORMATION_MESSAGE);
+		}
         selectInList(w);
     }
 
     private void refreshList() {
-        if (!ensureDict()) return;
+        if (!ensureDict()) {
+			return;
+		}
         listModel.clear();
         for (String s : dict.getAllWords()) {
             listModel.addElement(s);
@@ -313,12 +358,17 @@ public class GUIDriver extends JFrame {
     private void refreshListPreserveSelection(String preferred) {
         String current = wordList.getSelectedValue();
         refreshList();
-        if (preferred != null) selectInList(preferred);
-        else if (current != null) selectInList(current);
+        if (preferred != null) {
+			selectInList(preferred);
+		} else if (current != null) {
+			selectInList(current);
+		}
     }
 
     private void selectInList(String value) {
-        if (value == null) return;
+        if (value == null) {
+			return;
+		}
         for (int i = 0; i < listModel.size(); i++) {
             if (value.equals(listModel.get(i))) {
                 wordList.setSelectedIndex(i);
@@ -329,7 +379,9 @@ public class GUIDriver extends JFrame {
     }
 
     private boolean ensureDict() {
-        if (dict != null) return true;
+        if (dict != null) {
+			return true;
+		}
         JOptionPane.showMessageDialog(this,
                 "No dictionary file loaded. Please open a file (File → Open…).",
                 "No Dictionary Loaded", JOptionPane.WARNING_MESSAGE);
@@ -339,7 +391,9 @@ public class GUIDriver extends JFrame {
 
     private String normalizedWord() {
         String w = wordField.getText();
-        if (w == null) w = "";
+        if (w == null) {
+			w = "";
+		}
         w = w.trim();
         if (w.isEmpty()) {
             setStatus("Enter a word first.");
